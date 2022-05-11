@@ -1,14 +1,6 @@
-# stage 1 (Build image)
-
-# pulling base image
-FROM node:16 as node
-# Setting the remote DIR to /app
-WORKDIR /
-# COPY the current folder
+FROM node:15.13-alpine
+WORKDIR /my-app
+ENV PATH="./node_modules/.bin:$PATH"
 COPY . .
-# run npm i (install all the dependencies)
-RUN npm install
-# this will generate dist
-EXPOSE 3000
-
+RUN npm run build
 CMD ["npm", "start"]
