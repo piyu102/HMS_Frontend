@@ -1,6 +1,5 @@
-FROM node:15.13-alpine
-WORKDIR /my-app
-ENV PATH="./node_modules/.bin:$PATH"
+FROM node:alpine as builder
+WORKDIR /frontend
 COPY . .
-RUN npm run build
-CMD ["npm", "start"]
+RUN npm install
+CMD ["npm","run", "start"]
